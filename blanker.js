@@ -14,7 +14,7 @@ function openBlankPageWithCode() {
 
         // Create a new iframe element
         var iframe = document.createElement('iframe');
-        iframe.src = website;
+        iframe.src = 'http://' + website;
         iframe.style.width = '100%';
         iframe.style.height = '100%';
         iframe.style.border = 'none';
