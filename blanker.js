@@ -1,18 +1,28 @@
 function openBlankPageWithCode() {
     // Prompt the user for the website they want to open
     var website = prompt("What website do you want to open in a new tab?");
+function openBlankPageWithCode() {
+    // Prompt the user for the website they want to open
+    var website = prompt("Enter the website URL you want to open in a new tab (e.g., https://example.com)");
 
-    // Open a new window or tab with about:blank
-    var newWindow = window.open('about:blank', '_blank');
+    if (website) {
+        // Check if the URL starts with http:// or https://
+        if (!website.startsWith('http://') && !website.startsWith('https://')) {
+            // Prepend http:// to the URL
+            website = 'http://' + website;
+        }
 
-    // Check if the new window is successfully opened
-    if (newWindow) {
-        // Write custom code to the new window
-        newWindow.document.write('<html><head><link rel="icon" type="image/png" href="/imresizer-1706741917427.jpg"/><title>' + website + '</title></head><body>');
-        newWindow.document.write('<iframe allowfullscreen src="' + website + '" style="position:absolute; top:0px; left:0px; width:100%; height:100%; border: none; overflow: hidden;"></iframe>');
-        newWindow.document.write('');
-        newWindow.document.close(); // Close the document for writing
+        // Create a new iframe element
+        var iframe = document.createElement('iframe');
+        iframe.src = website;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+
+        // Append the iframe to the current document's body
+        document.body.appendChild(iframe);
     } else {
-        alert('Unable to open a new window. Turn on popups.');
+        alert('Invalid website URL.');
     }
 }
+openBlankPageWithCode()
